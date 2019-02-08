@@ -46,8 +46,8 @@ def main():
 
 class Point():
     def __init__(self, x, y):
-        self.x = x
-        self.y = y
+        a = self.x = x
+        b = self.y = y
         self.move = 0
 
     def __repr__(self):
@@ -67,7 +67,6 @@ class Point():
         self.y = self.y + dy
         self.move = self.move + 1
 
-
     def get_number_of_moves_made(self):
         return self.move
 
@@ -76,9 +75,17 @@ class Point():
         return s**(.5)
 
     def get_distance_from_start(self):
+        d = (self.x)**2 + (self.y)**2
+        return d**(.5)
 
+    def get_distance_traveled(self):
 
+    def closer_to(self, point2, point3):
 
+    def halfway_to(self, point):
+        a = (self.x + point.x)/2
+        b = (self.y + point.y)/2
+        return a, b
 
 def run_test_init():
     """
@@ -532,7 +539,6 @@ def run_test_move_by():
         print('** FAILED: This method should NOT return an explicit')
         print('** value; in fact, it returned:', check_has_no_return)
 
-
 def run_test_get_number_of_moves_made():
     """
     Tests the   get_number_of_moves_made   method of the Point class.
@@ -818,35 +824,34 @@ def run_test_get_distance_from_start():
     print('Testing the   get_distance_from_START   method')
     print('of the Point class.')
     print('-----------------------------------------------------------')
-        p1 = Point(20, 30)
-        p1.move_to(111, 222)
-        p1.move_by(10, 20)
-        p1.move_to(0, 0)
-        p1.move_to(21, 31)
-        print()
-        print('p1 from start to (21, 31), should be about 1.414')
-        print('Actually is:', p1.get_distance_from_start())
+    p1 = Point(20, 30)
+    p1.move_to(111, 222)
+    p1.move_by(10, 20)
+    p1.move_to(0, 0)
+    p1.move_to(21, 31)
+    print()
+    print('p1 from start to (21, 31), should be about 1.414')
+    print('Actually is:', p1.get_distance_from_start())
+    p1.move_by(29, 39)
+    print()
+    print('p1 from start to (50, 70), should be about 50.0')
+    print('Actually is:', p1.get_distance_from_start())
 
-        p1.move_by(29, 39)
-        print()
-        print('p1 from start to (50, 70), should be about 50.0')
-        print('Actually is:', p1.get_distance_from_start())
+    p2 = Point(1, 1)
+    print()
+    print('p2 from start to (1, 1), should be about 0.0')
+    print('Actually is:', p2.get_distance_from_start())
 
-        p2 = Point(1, 1)
-        print()
-        print('p2 from start to (1, 1), should be about 0.0')
-        print('Actually is:', p2.get_distance_from_start())
+    p2.move_to(11, 1)
+    print()
+    print('p2 from start to (11, 1), should be about 10.0')
+    print('Actually is:', p2.get_distance_from_start())
 
-        p2.move_to(11, 1)
-        print()
-        print('p2 from start to (11, 1), should be about 10.0')
-        print('Actually is:', p2.get_distance_from_start())
-
-        p2.move_to(999, 999)
-        p2.move_to(1, 1)
-        print()
-        print('p2 from start to (1, 1), should be about 0.0')
-        print('Actually is:', p2.get_distance_from_start())
+    p2.move_to(999, 999)
+    p2.move_to(1, 1)
+    print()
+    print('p2 from start to (1, 1), should be about 0.0')
+    print('Actually is:', p2.get_distance_from_start())
 
 def run_test_get_distance_traveled():
     """
@@ -900,7 +905,6 @@ def run_test_get_distance_traveled():
     print('Testing the   get_distance_traveled   method')
     print('of the Point class.')
     print('-----------------------------------------------------------')
-
 
 def run_test_closer_to():
     """
@@ -957,7 +961,6 @@ def run_test_closer_to():
     print('Testing the   closer_to   method of the Point class.')
     print('-----------------------------------------------------------')
 
-
 def run_test_halfway_to():
     """
     Tests the   halfway_to   method of the Point class.
@@ -1005,13 +1008,39 @@ def run_test_halfway_to():
 
     """
     # -------------------------------------------------------------------------
-    # TODO: 13.  Follow the same instructions as in TO-DO 3 above,
+    # DONE: 13.  Follow the same instructions as in TO-DO 3 above,
     #    but for the  halfway_to  method specified above.
     # -------------------------------------------------------------------------
     print()
     print('-----------------------------------------------------------')
     print('Testing the   halfway_to   method of the Point class.')
     print('-----------------------------------------------------------')
+    p1 = Point(10, 20)
+    p2 = Point(30, 100)
+
+    print()
+    print('Should be: Point(20.0, 60.0)')
+    print('Actual is:', p1.halfway_to(p2))
+    print('Should be: Point(20.0, 60.0)')
+    print('Actual is:', p2.halfway_to(p1))
+
+    print()
+    print('Should be: Point(10.0, 20.0)')
+    print('Actual is:', p1.halfway_to(p1))
+
+    p3 = Point(-10, 20)
+    p4 = Point(30, -100)
+
+    print()
+    print('Should be: Point(10.0, -40.0)')
+    print('Actual is:', p3.halfway_to(p4))
+    print('Should be: Point(10.0, -40.0)')
+    print('Actual is:', p3.halfway_to(p4))
+
+    print()
+    print('Should be: Point(-10.0, 20.0)')
+    print('Actual is:', p3.halfway_to(p3))
+
 
 
 # -----------------------------------------------------------------------------
